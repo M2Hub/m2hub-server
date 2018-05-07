@@ -17,14 +17,28 @@ public class MavenResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/version")
 	public void getVersion() throws Exception {
-	    MavenHelper.runMavenCli(" -v ");
+	    MavenHelper.runMavenCli("-v");
 	}
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/{options}")
-	public void run(@PathParam("options") String options) throws Exception {
-	    MavenHelper.runMavenCli(options);
+	@Path("/{option}")
+	public String runOption(@PathParam("option") String option) throws Exception {
+	    return MavenHelper.runMavenCli("-" + option);
+	}
+	
+	@POST
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/{option}/{goal}")
+	public String runGoal(@PathParam("option") String option, @PathParam("goal") String goal) throws Exception {
+	    return MavenHelper.runMavenCli("-"+ option + " " + goal);
+	}
+	
+	@POST
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/{option}/{goal}/{phase}")
+	public String runPhase(@PathParam("option") String option, @PathParam("goal") String goal, @PathParam("phase") String phase) throws Exception {
+	    return MavenHelper.runMavenCli("-"+ option + " " + goal + " " + phase);
 	}
 	
 }
