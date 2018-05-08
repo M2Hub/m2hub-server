@@ -16,8 +16,8 @@ public class MavenResource {
     @GET
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/version")
-	public void getVersion() throws Exception {
-	    MavenHelper.runMavenCli("-v");
+	public String getVersion() throws Exception {
+	    return MavenHelper.runMavenCli("-v");
 	}
 	
 	@POST
