@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
@@ -24,7 +23,6 @@
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.25</version>
         </dependency>
-
 -->    
 
         <dependency>
@@ -38,6 +36,15 @@
             <artifactId>maven-embedder</artifactId>
             <version>3.5.3</version>
         </dependency>
+
+<!--        
+        <dependency>
+            <groupId>org.apache.maven.resolver</groupId>
+            <artifactId>maven-resolver</artifactId>
+            <version>1.1.1</version>
+            <type>pom</type>
+        </dependency>
+-->
 
 <!--
         
@@ -232,6 +239,32 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			
+			<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>rnd.mavenhub.App</mainClass>
+                    <!--<mainClass>rnd.mavenhub.utils.MavenHelper</mainClass>-->
+                </configuration>
+            </plugin>
+            
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<webappDirectory>www</webappDirectory>
+				</configuration>
 			</plugin>
 
 		</plugins>

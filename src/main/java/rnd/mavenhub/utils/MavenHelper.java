@@ -22,11 +22,11 @@ public class MavenHelper {
                         new String[] { options.trim() }, //
                         ".", //
                         ps, ps);
-        if(result != 0) {
-            throw new RuntimeException("MavenCli exited abnormally");
-        } else {
+        //if(result != 0) {
+            //throw new RuntimeException("MavenCli exited abnormally");
+        //} else {
             return baos.toString();
-        }
+        //}
 
     }
     
