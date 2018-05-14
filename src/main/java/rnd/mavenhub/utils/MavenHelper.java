@@ -1,8 +1,17 @@
 package rnd.mavenhub.utils;
 
+import java.io.File;
 import java.io.PrintStream;
+import java.util.Collections;
 
 import org.apache.maven.cli.MavenCli;
+import org.apache.maven.shared.invoker.DefaultInvocationRequest;
+import org.apache.maven.shared.invoker.DefaultInvoker;
+import org.apache.maven.shared.invoker.InvocationOutputHandler;
+import org.apache.maven.shared.invoker.InvocationRequest;
+import org.apache.maven.shared.invoker.Invoker;
+import org.apache.maven.shared.invoker.MavenInvocationException;
+import org.apache.maven.shared.invoker.PrintStreamHandler;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 
 public class MavenHelper {
@@ -27,11 +36,26 @@ public class MavenHelper {
         //} else {
             return baos.toString();
         //}
-
     }
     
-    public static void main(String[] args) {
-        System.out.print(runMavenCli(" -v "));
+    public static void main(String[] args) throws MavenInvocationException {
+        //System.out.print(runMavenCli(" -v "));
+                 
+        Invoker invoker = new DefaultInvoker();
+        
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        InvocationOutputHandler ioh = new PrintStreamHandler(new PrintStream(baos), false);
+        
+        invoker.setOutputHandler(ioh);
+        invoker.setErrorHandler(ioh);
+
+        InvocationRequest request = new DefaultInvocationRequest();
+        //request.setPomFile( new File( "/path/to/pom.xml" ) );
+        request.setGoals( Collections.singletonList( "--version" ) );
+        
+        invoker.execute( request );
+        
+        System.out.println(baos.toString());
     }
     
 }

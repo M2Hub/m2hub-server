@@ -37,14 +37,13 @@
             <version>3.5.3</version>
         </dependency>
 
-<!--        
         <dependency>
             <groupId>org.apache.maven.resolver</groupId>
             <artifactId>maven-resolver</artifactId>
             <version>1.1.1</version>
             <type>pom</type>
         </dependency>
--->
+
 
 <!--
         
@@ -107,7 +106,12 @@
 
 -->
 
-
+        <dependency>
+            <groupId>org.apache.maven.shared</groupId>
+            <artifactId>maven-invoker</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        
 <!--
         <dependency>
             <groupId>org.apache.maven.shared</groupId>
@@ -119,12 +123,6 @@
             <groupId>org.apache.maven.shared</groupId>
             <artifactId>maven-dependency-tree</artifactId>
             <version>3.0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.maven.shared</groupId>
-            <artifactId>maven-invoker</artifactId>
-            <version>3.0.0</version>
         </dependency>
 
         <dependency>
@@ -203,6 +201,14 @@
         </dependency>
 -->
 
+<!--
+        <dependency>
+            <groupId>io.takari</groupId>
+            <artifactId>maven-wrapper</artifactId>
+            <version>0.4.0</version>
+        </dependency>
+-->
+
         <dependency>
     	   <groupId>javax.ws.rs</groupId>
     	   <artifactId>javax.ws.rs-api</artifactId>
@@ -253,8 +259,8 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>rnd.mavenhub.App</mainClass>
-                    <!--<mainClass>rnd.mavenhub.utils.MavenHelper</mainClass>-->
+                    <!--<mainClass>rnd.mavenhub.App</mainClass>-->
+                    <mainClass>rnd.mavenhub.utils.MavenHelper</mainClass>
                 </configuration>
             </plugin>
             
