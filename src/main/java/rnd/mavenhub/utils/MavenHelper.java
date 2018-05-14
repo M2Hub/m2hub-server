@@ -1,6 +1,5 @@
 package rnd.mavenhub.utils;
 
-import java.io.File;
 import java.io.PrintStream;
 import java.util.Collections;
 
@@ -22,13 +21,13 @@ public class MavenHelper {
     
     private static MavenCli CLI = new MavenCli();
     
-    public static String runMavenCli(String options) {
+    public static String execMavenCli(String args) {
         
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);
         
         int result = CLI.doMain(
-                        new String[] { options.trim() }, //
+                        new String[] { args.trim() }, //
                         ".", //
                         ps, ps);
         //if(result != 0) {
@@ -38,9 +37,8 @@ public class MavenHelper {
         //}
     }
     
-    public static void main(String[] args) throws MavenInvocationException {
-        //System.out.print(runMavenCli(" -v "));
-                 
+    public static String execMavenInvoker(String args) {
+        
         Invoker invoker = new DefaultInvoker();
         
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -51,11 +49,25 @@ public class MavenHelper {
 
         InvocationRequest request = new DefaultInvocationRequest();
         //request.setPomFile( new File( "/path/to/pom.xml" ) );
-        request.setGoals( Collections.singletonList( "--version" ) );
+        request.setGoals( Collections.singletonList( args ) );
         
-        invoker.execute( request );
+        try {
+            invoker.execute( request );
+        } catch (MavenInvocationException e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
         
-        System.out.println(baos.toString());
+        return baos.toString();
+    }
+    
+    public static String execMaven(String args) {
+        //return execMavenCli(args);
+        return execMavenInvoker(args);
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(execMaven("-v"));
     }
     
 }

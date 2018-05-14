@@ -18,84 +18,84 @@ public class MavenResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/h")
 	public String getHelp() throws Exception {
-	    return MavenHelper.runMavenCli("-h");
+	    return MavenHelper.execMaven("-h");
 	}
 	
     @GET
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/help")
 	public String getFullHelp() throws Exception {
-	    return MavenHelper.runMavenCli("--help");
+	    return MavenHelper.execMaven("--help");
 	}
 	
     @GET
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/v")
 	public String getVersion() throws Exception {
-	    return MavenHelper.runMavenCli("-v");
+	    return MavenHelper.execMaven("-v");
 	}
 	
     @GET
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/version")
 	public String getFullVersion() throws Exception {
-	    return MavenHelper.runMavenCli("--version");
+	    return MavenHelper.execMaven("--version");
 	}
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/-{option}")
 	public String runOption(@PathParam("option") String option) throws Exception {
-	    return MavenHelper.runMavenCli("-" + option);
+	    return MavenHelper.execMaven("-" + option);
 	}
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/--{option}")
 	public String runFullOption(@PathParam("option") String option) throws Exception {
-	    return MavenHelper.runMavenCli("--" + option);
+	    return MavenHelper.execMaven("--" + option);
 	}
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/{goal}")
 	public String runGoal(@PathParam("goal") String goal) throws Exception {
-	    return MavenHelper.runMavenCli(goal);
+	    return MavenHelper.execMaven(goal);
 	}
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/-{option}/{goal}")
 	public String runOptionGoal(@PathParam("option") String option, @PathParam("goal") String goal) throws Exception {
-	    return MavenHelper.runMavenCli("-"+ option + " " + goal);
+	    return MavenHelper.execMaven("-"+ option + " " + goal);
 	}
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/--{option}/{goal}")
 	public String runFullOptionGoal(@PathParam("option") String option, @PathParam("goal") String goal) throws Exception {
-	    return MavenHelper.runMavenCli("--"+ option + " " + goal);
+	    return MavenHelper.execMaven("--"+ option + " " + goal);
 	}
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/{goal}/{phase}")
 	public String runGoalPhase(@PathParam("goal") String goal, @PathParam("phase") String phase) throws Exception {
-	    return MavenHelper.runMavenCli(goal + ":" + phase);
+	    return MavenHelper.execMaven(goal + ":" + phase);
 	}
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/-{option}/{goal}/{phase}")
 	public String runOptionGoalPhase(@PathParam("option") String option, @PathParam("goal") String goal, @PathParam("phase") String phase) throws Exception {
-	    return MavenHelper.runMavenCli("-"+ option + " " + goal + ":" + phase);
+	    return MavenHelper.execMaven("-"+ option + " " + goal + ":" + phase);
 	}
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/--{option}/{goal}/{phase}")
 	public String runFullOption_Goal_Phase(@PathParam("option") String option, @PathParam("goal") String goal, @PathParam("phase") String phase) throws Exception {
-	    return MavenHelper.runMavenCli("--"+ option + " " + goal + ":" + phase);
+	    return MavenHelper.execMaven("--"+ option + " " + goal + ":" + phase);
 	}
 
 	
