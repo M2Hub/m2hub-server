@@ -11,7 +11,10 @@ import org.apache.maven.shared.invoker.InvocationRequest;
 import org.apache.maven.shared.invoker.Invoker;
 import org.apache.maven.shared.invoker.MavenInvocationException;
 import org.apache.maven.shared.invoker.PrintStreamHandler;
+import org.apache.maven.wrapper.MavenWrapperMain;
 import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
+
+import rnd.mavenhub.cli.MavenHubCli;
 
 public class MavenHelper {
     
@@ -19,9 +22,10 @@ public class MavenHelper {
         System.setProperty("maven.multiModuleProjectDirectory", ".");
     }
     
-    private static MavenCli CLI = new MavenCli();
-    
     public static String execMavenCli(String args) {
+
+        //MavenCli CLI = new MavenCli();
+        MavenHubCli CLI = new MavenHubCli();
         
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);
@@ -61,13 +65,26 @@ public class MavenHelper {
         return baos.toString();
     }
     
+    public static String execMavenWrapper(String args) {
+        try {
+            MavenWrapperMain.main(new String[]{ args });
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+        
+        return "Maven Executed";
+        
+    }
+    
     public static String execMaven(String args) {
-        //return execMavenCli(args);
-        return execMavenInvoker(args);
+        return execMavenCli(args);
+        //return execMavenInvoker(args);
+        //return execMavenWrapper(args);
     }
     
     public static void main(String[] args) {
-        System.out.println(execMaven("-v"));
+        System.out.println(execMaven("clean"));
     }
     
 }
