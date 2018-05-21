@@ -9,5 +9,6 @@ public class AppConfig extends ResourceConfig {
 
 	public AppConfig() {
 		register(MavenResource.class);
+		register(CommandResource.class);
 	}
 }
