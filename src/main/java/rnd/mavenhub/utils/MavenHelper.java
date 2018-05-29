@@ -20,7 +20,8 @@ public class MavenHelper {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);
 
-        String workDir = "/home/user/workspace/";
+        // String workDir = "/home/user/workspace/";
+        String workDir = "./user/workspace/";
 
         if(projectName !=null ) {
             workDir = workDir + File.separator + projectName;
@@ -79,20 +80,23 @@ public class MavenHelper {
     
     public static void main(String[] args) {
         
-//        System.out.println(execMaven("MyWebApp", new String[]{ "compile" }));
+        System.out.println(execMaven(null, new String[] {
+            "archetype:generate", //
+            "-B", //
+            "-DarchetypeGroupId=org.apache.maven.archetypes", //
+            "-DarchetypeArtifactId=maven-archetype-webapp", //
+            "-DarchetypeVersion=1.3",//
+            "-DgroupId=rnd", //
+            "-DartifactId=MyWebApp", //
+            "-Dversion=1.0.0" //
+        }));
         
-//        System.out.println(execMaven("MyWebApp", new String[]{ "clean" }));
+        System.out.println(execMaven("MyWebApp", new String[]{ "clean" }));
         
-//        System.out.println(execMaven(null, new String[] {
-//            "archetype:generate", //
-//            "-B", //
-//            "-DarchetypeGroupId=org.apache.maven.archetypes", //
-//            "-DarchetypeArtifactId=maven-archetype-webapp", //
-//            "-DarchetypeVersion=1.3",//
-//            "-DgroupId=rnd", //
-//            "-DartifactId=MyWebApp", //
-//            "-Dversion=1.0.0" //
-//        }));
+        System.out.println(execMaven("MyWebApp", new String[]{ "compile" }));
+        
+        System.out.println(execMaven("MyWebApp", new String[]{ "install" }));
+
     }
     
 }
