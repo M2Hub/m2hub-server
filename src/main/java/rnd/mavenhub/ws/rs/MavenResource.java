@@ -5,14 +5,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -67,29 +65,29 @@ public class MavenResource {
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/{goal}")
-	public String runGoal(@PathParam("goal") String goal) throws Exception {
-	    return MavenHelper.execMaven(goal);
+	public String runGoal(@PathParam("goal") String goal, @FormParam("artifactId") String artifactId) throws Exception {
+	    return MavenHelper.execMaven(artifactId, new String[] { goal });
 	}
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/-{option}/{goal}")
-	public String runOptionGoal(@PathParam("option") String option, @PathParam("goal") String goal) throws Exception {
-	    return MavenHelper.execMaven("-"+ option, goal);
+	public String runOptionGoal(@PathParam("option") String option, @PathParam("goal") String goal, @FormParam("artifactId") String artifactId) throws Exception {
+	    return MavenHelper.execMaven(artifactId, new String[] { "-"+ option, goal });
 	}
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/--{option}/{goal}")
-	public String runFullOptionGoal(@PathParam("option") String option, @PathParam("goal") String goal) throws Exception {
-	    return MavenHelper.execMaven("--"+ option, goal);
+	public String runFullOptionGoal(@PathParam("option") String option, @PathParam("goal") String goal, @FormParam("artifactId") String artifactId) throws Exception {
+	    return MavenHelper.execMaven(artifactId, new String[] { "--"+ option, goal });
 	}
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/{goal}/{phase}")
-	public String runGoalPhase(@PathParam("goal") String goal, @PathParam("phase") String phase) throws Exception {
-	    return MavenHelper.execMaven(goal + ":" + phase);
+	public String runGoalPhase(@PathParam("goal") String goal, @PathParam("phase") String phase, @FormParam("artifactId") String artifactId) throws Exception {
+	    return MavenHelper.execMaven(artifactId, new String[]{ goal + ":" + phase });
 	}
 	
 	@POST
@@ -112,14 +110,16 @@ public class MavenResource {
 	        params.add("-D"+key + "=" + values.get(0));
 	    }
 	    
-	    return MavenHelper.execMaven((String[]) params.toArray(new String[0]));
+	    // TODO Add artificat support
+	    return MavenHelper.execMaven(null, (String[]) params.toArray(new String[0]));
 	}
 	
 	@POST
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/--{option}/{goal}/{phase}")
 	public String runFullOption_Goal_Phase(@PathParam("option") String option, @PathParam("goal") String goal, @PathParam("phase") String phase) throws Exception {
-	    return MavenHelper.execMaven("--"+ option, goal + ":" + phase);
+	    // TODO Add artificat support
+	    return MavenHelper.execMaven(null, new String[] { "--"+ option, goal + ":" + phase });
 	}
 
 	
