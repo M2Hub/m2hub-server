@@ -1,2 +1,1 @@
-# mavenhub-server
-Maven Hub Server
+M2Hub Server
