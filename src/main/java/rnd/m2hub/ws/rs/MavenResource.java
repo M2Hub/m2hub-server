@@ -1,4 +1,4 @@
-package rnd.mavenhub.ws.rs;
+package rnd.m2hub.ws.rs;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,7 +14,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 
-import rnd.mavenhub.utils.MavenHelper;
+import rnd.m2hub.utils.MavenHelper;
 
 
 @Path("/mvn")

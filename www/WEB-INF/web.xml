@@ -5,12 +5,12 @@
     <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
     <init-param>
       <param-name>javax.ws.rs.Application</param-name>
-      <param-value>rnd.mavenhub.ws.rs.AppConfig</param-value>
+      <param-value>rnd.m2hub.ws.rs.AppConfig</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>rnd.mavenhub.ws.rs.AppConfig</servlet-name>
+    <servlet-name>rnd.m2hub.ws.rs.AppConfig</servlet-name>
     <url-pattern>/*</url-pattern>
   </servlet-mapping>
 </web-app>

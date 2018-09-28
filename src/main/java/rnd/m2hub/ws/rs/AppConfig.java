@@ -1,4 +1,4 @@
-package rnd.mavenhub.ws.rs;
+package rnd.m2hub.ws.rs;
 
 import javax.ws.rs.ApplicationPath;
 

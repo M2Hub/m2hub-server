@@ -1,4 +1,4 @@
-package rnd.mavenhub.ws;
+package rnd.m2hub.ws;
 
 import java.io.IOException;
 

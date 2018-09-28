@@ -1,4 +1,4 @@
-package rnd.mavenhub.cli;
+package rnd.m2hub.cli;
 
 import org.apache.maven.cli.MavenCli;
 import org.apache.maven.repository.RepositorySystem;
@@ -13,9 +13,9 @@ import org.eclipse.aether.transport.http.HttpTransporterFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MavenHubCli extends MavenCli {
+public class M2HubCli extends MavenCli {
     
-    private static Logger log = LoggerFactory.getLogger(MavenHubCli.class);
+    private static Logger log = LoggerFactory.getLogger(M2HubCli.class);
     
     @Override
     protected void customizeContainer(PlexusContainer container) {

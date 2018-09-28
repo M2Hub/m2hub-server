@@ -1,4 +1,4 @@
-package rnd.mavenhub.utils;
+package rnd.m2hub.utils;
 
 import java.io.File;
 import java.io.PrintStream;
@@ -20,14 +20,15 @@ public class MavenHelper {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);
 
-        // String workDir = "/home/user/workspace/";
-        String workDir = "./user/workspace/";
+        String workspaceDir = "/home/user/workspace";
+        //String workspaceDir = "./user/workspace";
 
+        String projectDir = workspaceDir;
         if(projectName !=null ) {
-            workDir = workDir + File.separator + projectName;
+            projectDir = workspaceDir + File.separator + projectName;
         }
         
-        int result = CLI.doMain(args, workDir, ps, ps);
+        int result = CLI.doMain(args, projectDir, ps, ps);
         //if(result != 0) {
             //throw new RuntimeException("MavenCli exited abnormally");
         //} else {
@@ -74,8 +75,8 @@ public class MavenHelper {
         return execMavenCli(null, new String[] { option });
     }
 
-    public static String execMaven(String projetName, String[] args) {
-        return execMavenCli(projetName, args);
+    public static String execMaven(String projectName, String[] args) {
+        return execMavenCli(projectName, args);
     }
     
     public static void main(String[] args) {
@@ -91,11 +92,13 @@ public class MavenHelper {
             "-Dversion=1.0.0" //
         }));
         
-        System.out.println(execMaven("MyWebApp", new String[]{ "clean" }));
+        System.out.println(WorkspaceHelper.getProjectObjectModel("MyWebApp"));
         
-        System.out.println(execMaven("MyWebApp", new String[]{ "compile" }));
+        //System.out.println(execMaven("MyWebApp", new String[]{ "clean" }));
         
-        System.out.println(execMaven("MyWebApp", new String[]{ "install" }));
+        //System.out.println(execMaven("MyWebApp", new String[]{ "compile" }));
+        
+        //System.out.println(execMaven("MyWebApp", new String[]{ "install" }));
 
     }
     

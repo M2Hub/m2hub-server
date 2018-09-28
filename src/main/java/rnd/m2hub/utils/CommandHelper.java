@@ -1,4 +1,4 @@
-package rnd.mavenhub.utils;
+package rnd.m2hub.utils;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

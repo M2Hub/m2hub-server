@@ -1,9 +1,10 @@
-package rnd.mavenhub.utils;
+package rnd.m2hub.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.zip.ZipFile;
@@ -20,18 +21,29 @@ public class FileHelper {
             }
             is.close();
             return content.toString();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return "";
         }
     }
     
     public static String readFile(String fileName) {
+        System.out.println("FileHelper.readFile: " + fileName);
         InputStream is = FileHelper.class.getClassLoader().getResourceAsStream(fileName);
+        System.out.println("FileHelper.readFile: ResourceNotFound, reading FileSystem");
+        try {
+            if(is == null) {
+                is = new FileInputStream(fileName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
         return readFile(is);
     }
     
     public static String readZipFile(String zipFileName) {
+        System.out.println("FileHelper.readFile: " + zipFileName);
         try {
             URL zipUrl = FileHelper.class.getClassLoader().getResource(zipFileName);
             File zipFile = new File(zipUrl.toURI());

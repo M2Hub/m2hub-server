@@ -3,9 +3,9 @@
 
     <modelVersion>4.0.0</modelVersion>
     
-    <name>mavenhub-server</name>
-    <groupId>rnd.mavenhub</groupId>
-    <artifactId>mavenhub-server</artifactId>
+    <name>m2hub-server</name>
+    <groupId>rnd.m2hub</groupId>
+    <artifactId>m2hub-server</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
     
@@ -285,7 +285,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>rnd.mavenhub.App</mainClass>
+					<mainClass>rnd.m2hub.App</mainClass>
 				</configuration>
 
 				<executions>
@@ -309,10 +309,10 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <!--<mainClass>rnd.mavenhub.App</mainClass>-->
-                    <!--<mainClass>rnd.mavenhub.utils.MavenHelper</mainClass>-->
-                    <!--<mainClass>rnd.mavenhub.utils.FileHelper</mainClass>-->
-                    <mainClass>rnd.mavenhub.utils.WorkspaceHelper</mainClass>
+                    <!--<mainClass>rnd.m2hub.App</mainClass>-->
+                    <mainClass>rnd.m2hub.utils.MavenHelper</mainClass>
+                    <!--<mainClass>rnd.m2hub.utils.FileHelper</mainClass>-->
+                    <!--<mainClass>rnd.m2hub.utils.WorkspaceHelper</mainClass>-->
                 </configuration>
             </plugin>
             

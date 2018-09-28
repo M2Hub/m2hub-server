@@ -1,9 +1,9 @@
-package rnd.mavenhub;
+package rnd.m2hub;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import rnd.mavenhub.ws.rs.AppConfig;
+import rnd.m2hub.ws.rs.AppConfig;
 
 @SpringBootApplication
 public class App {

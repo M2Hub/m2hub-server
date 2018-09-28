@@ -1,4 +1,4 @@
-package rnd.mavenhub.ws.rs;
+package rnd.m2hub.ws.rs;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -7,7 +7,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import rnd.mavenhub.utils.CommandHelper;
+import rnd.m2hub.utils.CommandHelper;
 
 @Path("/cmd")
 public class CommandResource {
