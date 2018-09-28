@@ -2,7 +2,6 @@ package rnd.m2hub.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -49,7 +48,9 @@ public class FileHelper {
             File zipFile = new File(zipUrl.toURI());
             ZipFile zip = new ZipFile(zipFile);
             InputStream is = zip.getInputStream(zip.entries().nextElement());
-            return readFile(is);
+            String content = readFile(is);
+            zip.close();
+            return content;
         } catch (Exception e) {
             e.printStackTrace();
             return "";

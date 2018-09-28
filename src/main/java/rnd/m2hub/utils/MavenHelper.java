@@ -11,6 +11,8 @@ public class MavenHelper {
     static {
         System.setProperty("maven.multiModuleProjectDirectory", ".");
     }
+
+    public static String WORKSPACE_DIR = "./user/workspace";
     
     public static String execMavenCli(String projectName, String[] args) {
 
@@ -20,12 +22,10 @@ public class MavenHelper {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(baos);
 
-        String workspaceDir = "/home/user/workspace";
-        //String workspaceDir = "./user/workspace";
 
-        String projectDir = workspaceDir;
+        String projectDir = WORKSPACE_DIR;
         if(projectName !=null ) {
-            projectDir = workspaceDir + File.separator + projectName;
+            projectDir = WORKSPACE_DIR + File.separator + projectName;
         }
         
         int result = CLI.doMain(args, projectDir, ps, ps);
@@ -80,6 +80,8 @@ public class MavenHelper {
     }
     
     public static void main(String[] args) {
+        
+        MavenHelper.WORKSPACE_DIR = "/home/user/workspace";
         
         System.out.println(execMaven(null, new String[] {
             "archetype:generate", //
